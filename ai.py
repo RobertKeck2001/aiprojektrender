@@ -65,6 +65,9 @@ async def query_llm(request: QueryRequest):
 # Uvicorn-Start (falls direkt ausgeführt)
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    # Setze den Port auf den Wert der Umgebungsvariable PORT oder 8000, falls nicht gesetzt
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port, reload=True)
+
 
 

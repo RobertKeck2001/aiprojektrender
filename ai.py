@@ -23,10 +23,10 @@ app = FastAPI()
 # CORS aktivieren
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["https://port8080-workspaces-ws-8ld6w.eu20.applicationstudio.cloud.sap"], 
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["POST"],
+    allow_headers=["Content-Type"]  
 )
 
 # Modell zur Validierung von Anfragen

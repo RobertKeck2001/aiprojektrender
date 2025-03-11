@@ -67,7 +67,8 @@ if __name__ == "__main__":
     import uvicorn
     # Setze den Port auf den Wert der Umgebungsvariable PORT oder 8000, falls nicht gesetzt
     port = int(os.environ.get('PORT'))
-    uvicorn.run(app, host="0.0.0.0", port=port, reload=True)
+    print(port)
+    uvicorn.run(app, host="0.0.0.0", port, reload=True)
 
 
 

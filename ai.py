@@ -2,6 +2,7 @@ import json
 import os
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from gen_ai_hub.proxy.langchain.openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
@@ -18,6 +19,15 @@ print("AICORE_CLIENT_SECRET:", os.getenv("AICORE_CLIENT_SECRET"))
 
 # FastAPI App initialisieren
 app = FastAPI()
+
+# CORS aktivieren
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Modell zur Validierung von Anfragen
 class QueryRequest(BaseModel):
@@ -68,4 +78,3 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8000))  # Render setzt den PORT automatisch
     print(f"Starte die App auf Port: {port}")
     uvicorn.run(app, host="0.0.0.0", port=port, reload=True)
-

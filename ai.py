@@ -10,8 +10,8 @@ from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 
 # Lade Umgebungsvariablen
-print("Existiert die Datei?", os.path.exists(".env"))
-load_dotenv(".env")
+print("Existiert die Datei?", os.path.exists("/etc/secrets/.env"))
+load_dotenv("/etc/secrets/.env")
 
 print("AICORE_BASE_URL:", os.getenv("AICORE_BASE_URL"))
 print("AICORE_CLIENT_ID:", os.getenv("AICORE_CLIENT_ID"))

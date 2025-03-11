@@ -10,8 +10,8 @@ from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 
 # Lade Umgebungsvariablen
-print("Existiert die Datei?", os.path.exists("/etc/secrets/.env"))
-load_dotenv("/etc/secrets/.env")
+print("Existiert die Datei?", os.path.exists(".env"))
+load_dotenv(".env")
 
 print("AICORE_BASE_URL:", os.getenv("AICORE_BASE_URL"))
 print("AICORE_CLIENT_ID:", os.getenv("AICORE_CLIENT_ID"))
@@ -45,6 +45,12 @@ chat_llm = ChatOpenAI(proxy_model_name='gpt-4o-mini')
 # QA-Instanz erstellen
 qa = RetrievalQA.from_llm(llm=chat_llm, retriever=retriever)
 
+# **Hinzufügen der Root-Route**
+@app.get("/")
+async def root():
+    """Gibt eine einfache Nachricht zurück, wenn die App läuft."""
+    return {"message": "App läuft"}
+
 @app.post("/query")
 async def query_llm(request: QueryRequest):
     """Verarbeitet Anfragen von SAP Build Apps"""
@@ -60,3 +66,5 @@ async def query_llm(request: QueryRequest):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+
+

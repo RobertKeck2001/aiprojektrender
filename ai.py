@@ -10,9 +10,8 @@ from langchain_community.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 
 # Lade Umgebungsvariablen
-print("Existiert die Datei?", os.path.exists(".env"))
 load_dotenv(".env")
-
+print("Existiert die Datei?", os.path.exists(".env"))
 print("AICORE_BASE_URL:", os.getenv("AICORE_BASE_URL"))
 print("AICORE_CLIENT_ID:", os.getenv("AICORE_CLIENT_ID"))
 print("AICORE_CLIENT_SECRET:", os.getenv("AICORE_CLIENT_SECRET"))
@@ -66,8 +65,7 @@ async def query_llm(request: QueryRequest):
 if __name__ == "__main__":
     import uvicorn
     # Setze den Port auf den Wert der Umgebungsvariable PORT oder 8000, falls nicht gesetzt
-    print(port)
-    uvicorn.run(app, host="0.0.0.0", port= int(os.environ.get('PORT')), reload=True)
-
-
+    port = int(os.environ.get('PORT', 8000))  # Render setzt den PORT automatisch
+    print(f"Starte die App auf Port: {port}")
+    uvicorn.run(app, host="0.0.0.0", port=port, reload=True)
 

@@ -23,7 +23,7 @@ app = FastAPI()
 # CORS aktivieren
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["https://byrecks.de/"], 
     allow_credentials=True,
     allow_methods=["POST"],
     allow_headers=["Content-Type"]

@@ -34,7 +34,7 @@ class QueryRequest(BaseModel):
     input: str
 
 # Dokumente aus dem Ordner "Rag-Docs" laden
-loader = DirectoryLoader("Rag-Docs", glob="*.pdf", loader_cls=PyPDFLoader)
+loader = DirectoryLoader("RAG-Docs", glob="*.pdf", loader_cls=PyPDFLoader)
 documents = loader.load()
 
 # Prüfen, ob Dokumente gefunden wurden
